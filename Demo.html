@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>签名画板</title>
+
+    <link rel="stylesheet" type="text/css" href="./signature.css" />
+    <style>
+        .signature-layout {
+            border-bottom: 1px solid #CCC;
+            text-align: center;
+            overflow: visible;
+            height: 45px;
+            width: 200px;
+        }
+        
+        .signature-img {
+            max-height: 50px;
+            max-width: 100px;
+        }
+        
+        .signature-btn {
+            margin-top: 8px;
+            float: right;
+            width: 40px;
+            height: 35px;
+            float: right;
+            cursor: pointer;
+            background-size: 15px 20px;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 1px solid #2e6da4;
+            border-radius: 3px;
+            filter: progid: DXImageTransform.Microsoft.Shadow(color=#909090, direction=120, strength=4);
+            -moz-box-shadow: 1px 1px 3px #909090;
+            -webkit-box-shadow: 1px 1px 3px #909090;
+            box-shadow: 1px 1px 3px #909090;
+        }
+        
+        .signature-btn:hover {
+            border: 1px solid #0486f8;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>签名画板演示</h3>
+    <p>点击签名按钮,在弹出的画板上绘制签名并保存</p>
+    <br/>
+    <div class="signature-layout">
+        <img id="imgSignature" class="signature-img" src="" />
+        <input type="button" class="signature-btn" id="btnSignature" aria-readonly="true" value="签名" />
+    </div>
+
+    <script src="./jquery-1.10.2.js"></script>
+    <script src="./signature.js"></script>
+    <script>
+        $(function() {
+            $("#btnSignature").click(function() {
+                $.signature(function(orgValue) {
+                    // value is not null when signatured
+                    if (orgValue) {
+                        $("#imgSignature").attr("src", orgValue);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
